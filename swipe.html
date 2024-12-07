@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Магазин TikTok Style</title>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #111;
+            color: white;
+            overflow: hidden;
+        }
+        .swiper-container {
+            width: 100%;
+            height: 100vh;
+        }
+        .swiper-slide {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: #222;
+            color: white;
+        }
+        .product-image {
+            width: 80%;
+            max-width: 400px;
+            border-radius: 20px;
+        }
+        .product-title {
+            margin-top: 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .product-price {
+            margin-top: 10px;
+            font-size: 18px;
+            color: #1db954;
+        }
+        .buy-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #1db954;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .buy-btn:hover {
+            background: #17a442;
+        }
+    </style>
+</head>
+<body>
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <!-- Товар 1: Взуття -->
+            <div class="swiper-slide">
+                <img src="https://cdn-fmgkk.nitrocdn.com/BKmNwBRkqVmPYIICtRzqecoodfHwfIVE/assets/images/optimized/rev-4ad413a/correcttoes.com/wp-content/uploads/2024/05/AL0A82CB_000_R_HERO-300x300.jpg" 
+                     alt="Кросівки Nike" 
+                     class="product-image">
+                <div class="product-title">Кросівки Nike</div>
+                <div class="product-price">₴2500</div>
+                <button class="buy-btn">Купити</button>
+            </div>
+            <!-- Товар 2: Взуття -->
+            <div class="swiper-slide">
+                <img src="https://carlsshoes.com/wp-content/uploads/2024/05/mw928bk3_nb_02_i-300x300.webp" 
+                     alt="Чорні черевики" 
+                     class="product-image">
+                <div class="product-title">Чорні черевики</div>
+                <div class="product-price">₴3500</div>
+                <button class="buy-btn">Купити</button>
+            </div>
+            <!-- Товар 3: Взуття -->
+            <div class="swiper-slide">
+                <img src="https://footlogics-shop.com.au/wp-content/uploads/2023/05/white-shoe-300x300.jpg" 
+                     alt="Білі кросівки" 
+                     class="product-image">
+                <div class="product-title">Білі кросівки</div>
+                <div class="product-price">₴2200</div>
+                <button class="buy-btn">Купити</button>
+            </div>
+            <!-- Товар 4: Взуття -->
+            <div class="swiper-slide">
+                <img src="https://caliber-kd-shoes.s3.ap-south-1.amazonaws.com/uploads/2024/11/24163849/273_BLK_5-300x300.jpg" 
+                     alt="Модні туфлі" 
+                     class="product-image">
+                <div class="product-title">Модні туфлі</div>
+                <div class="product-price">₴3000</div>
+                <button class="buy-btn">Купити</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script>
+        const swiper = new Swiper('.swiper-container', {
+            direction: 'vertical',
+            loop: true,
+        });
+
+        document.querySelectorAll('.buy-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                alert('Товар додано до кошика!');
+            });
+        });
+    </script>
+</body>
+</html>
