@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Магазин TikTok Style</title>
+    <title>SWIPEnTap</title>
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
     <style>
         body {
@@ -31,16 +31,24 @@
             border-radius: 20px;
         }
         .product-title {
-            margin-top: 20px;
-            font-size: 24px;
-            font-weight: bold;
+            font-family: 'Roboto', sans-serif; /* Сучасний шрифт */
+            font-size: 24px; /* Великий розмір шрифта */
+            font-weight: 600; /* Товстий шрифт для акценту */
+            color: #ff6347; /* Помаранчевий колір, який добре поєднується з кнопкою */
+            text-align: center;
+            margin-bottom: 5px; /* Відступ між назвою та ціною */
+            text-transform: uppercase; /* Великі літери для стилю */
+            letter-spacing: 1px; /* Легке збільшення інтервалу між літерами */
         }
         .product-price {
-            margin-top: 10px;
-            font-size: 18px;
-            color: #1db954;
+            font-family: 'Roboto', sans-serif; /* Той самий шрифт для узгодженості */
+            font-size: 22px; /* Трохи менший розмір, ніж для назви */
+            font-weight: bold; /* Товстий шрифт для привертання уваги */
+            color: #ff4500; /* Яскравий апельсиновий колір для контрасту */
+            text-align: center;
+            margin-bottom: 15px; /* Відступ для гармонії з іншими елементами */
         }
-        .buy-btn {
+        /* .buy-btn {
             margin-top: 20px;
             padding: 10px 20px;
             background: #1db954;
@@ -49,9 +57,62 @@
             color: white;
             cursor: pointer;
             font-size: 16px;
-        }
+        } 
         .buy-btn:hover {
             background: #17a442;
+        } */
+
+        .buy-btn {
+        margin-top: 20px;
+        padding: 12px 30px;
+        background: linear-gradient(135deg, #ff7f50, #ff6f61); /* Оновлений колір */
+        border: none;
+        border-radius: 50px; /* Округлі кути для більш сучасного вигляду */
+        color: white;
+        font-size: 18px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s, transform 0.3s; /* Додано плавну анімацію */
+}
+
+.buy-btn:hover {
+    background: linear-gradient(135deg, #ff6f61, #ff7f50); /* Зміна кольору на hover */
+    transform: scale(1.05); /* Легке збільшення кнопки при наведенні */
+}
+
+.buy-btn:active {
+    transform: scale(0.95); /* Зменшення кнопки при натисканні */
+}
+
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            height: 150px;
+            position: absolute;
+            top: 40%;
+            right: 480px;
+            transform: translateY(-50%);
+        }
+        .circle-btn {
+            width: 30px;
+            height: 50px;
+            background-color: #5a5a5a;
+            color: #111;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 10px 0;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s;
+        }
+        .circle-btn:hover {
+            background-color: #ff7f50;
+            color: white;
+            transform: scale(1.50);
         }
     </style>
 </head>
@@ -66,6 +127,12 @@
                 <div class="product-title">Кросівки Nike</div>
                 <div class="product-price">₴2500</div>
                 <button class="buy-btn">Купити</button>
+
+                <div class="button-group">
+                    <div class="circle-btn">❤️</div>
+                    <div class="circle-btn">🛒</div>
+                    <div class="circle-btn">🔗</div>
+                </div>
             </div>
             <!-- Товар 2: Взуття -->
             <div class="swiper-slide">
@@ -75,6 +142,12 @@
                 <div class="product-title">Чорні черевики</div>
                 <div class="product-price">₴3500</div>
                 <button class="buy-btn">Купити</button>
+
+                <div class="button-group">
+                    <div class="circle-btn">❤️</div>
+                    <div class="circle-btn">🛒</div>
+                    <div class="circle-btn">🔗</div>
+                </div>
             </div>
             <!-- Товар 3: Взуття -->
             <div class="swiper-slide">
@@ -84,6 +157,12 @@
                 <div class="product-title">Білі кросівки</div>
                 <div class="product-price">₴2200</div>
                 <button class="buy-btn">Купити</button>
+
+                <div class="button-group">
+                    <div class="circle-btn">❤️</div>
+                    <div class="circle-btn">🛒</div>
+                    <div class="circle-btn">🔗</div>
+                </div>
             </div>
             <!-- Товар 4: Взуття -->
             <div class="swiper-slide">
@@ -93,6 +172,12 @@
                 <div class="product-title">Модні туфлі</div>
                 <div class="product-price">₴3000</div>
                 <button class="buy-btn">Купити</button>
+
+                <div class="button-group">
+                    <div class="circle-btn">❤️</div>
+                    <div class="circle-btn">🛒</div>
+                    <div class="circle-btn">🔗</div>
+                </div>
             </div>
         </div>
     </div>
