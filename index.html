@@ -26,6 +26,21 @@
             background: #222;
             color: white;
         }
+
+        .shop-btn {
+            position: absolute;
+            right: 20px;
+            background-color: #ff6347;
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            z-index: 1000;
+            cursor: pointer;
+    }
+        .shop-btn:hover {
+            background-color: #ff4500;
+    }
+
         .product-image {
             width: 80%;
             max-width: 400px;
@@ -55,6 +70,17 @@
             font-size: 18px;
             font-weight: bold;
             cursor: pointer;
+        }
+
+        .buy-btn span {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background-color: red;
+            color: white;
+            border-radius: 50%;
+            padding: 2px 5px;
+            font-size: 12px;
         }
         .buy-btn:hover {
             background: linear-gradient(135deg, #ff6f61, #ff7f50);
@@ -88,15 +114,15 @@
         }
 
         .open-cart-btn {
-            position: absolute;
+           /* position: absolute; */
             bottom: 20px;
             right: 20px;
             padding: 12px 25px;
-            background-color: #ff6347;
+           /* background-color: #ff6347;*/
             color: white;
-            border: 2px solid white;
-            border-radius: 50px;
-            font-size: 20px;
+           /* border: 2px solid white;*/
+           /* border-radius: 50px;*/
+           /* font-size: 20px;*/
             cursor: pointer;
             z-index: 1000; /* Важливо! */
 }
@@ -166,12 +192,49 @@
         width: 100%; /* Кнопки займають всю ширину на дуже маленьких екранах */
         font-size: 16px; /* Зменшуємо розмір шрифта */
     }
+
+    .footer a {
+        font-size: 12px; /* Зменшення шрифтів для мобільних */
+    }
+    .footer a i {
+        font-size: 20px; /* Зменшення розміру іконок */
+    }
 }
+
+.footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            height: 80px;
+            background-color: #111;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            border-top: 2px solid #222;
+            z-index: 1000;
+        }
+        .footer a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 1000;
+        }
+        .footer a i {
+            font-size: 24px;
+            margin-bottom: 5px;
+            z-index: 1000;
+        }
     </style>
 </head>
 <body>
     <div class="swiper-container">
         <div class="swiper-wrapper">
+            
+
+
             <!-- Товар 1 -->
             <div class="swiper-slide">
                 <img src="https://cdn-fmgkk.nitrocdn.com/BKmNwBRkqVmPYIICtRzqecoodfHwfIVE/assets/images/optimized/rev-4ad413a/correcttoes.com/wp-content/uploads/2024/05/AL0A82CB_000_R_HERO-300x300.jpg" alt="Кросівки Nike" class="product-image">
@@ -214,10 +277,10 @@
         </div>
     </div>
 
-    <!-- Кнопка для відкриття кошика -->
+    <!-- Кнопка для відкриття кошика 
     <button class="open-cart-btn">
         🛒 Переглянути кошик
-    </button>
+    </button>-->
 
     <!-- Попап кошика -->
     <div id="cart-popup" class="cart-popup">
@@ -231,6 +294,24 @@
         <button id="cart-close-btn" class="cart-close-btn">Закрити кошик</button>
     </div>
     
+    <div class="footer">
+        <a href="shop.html">
+            <i class="fas fa-home"></i>
+            <span>🏠 Головна shop</span>
+        </a>
+        <a href="search.html">
+            <i class="fas fa-search"></i>
+            <span>🔍 Пошук</span>
+        </a>
+        <a >
+            <i ></i>
+            <span class="open-cart-btn"> 🛒 Кошик</span>
+        </a>
+        <a href="wishlist.html">
+            <i class="fas fa-heart"></i>
+            <span>💖 Обране</span>
+        </a>
+    </div>
 
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script>
@@ -303,6 +384,8 @@
         cartCloseBtn.addEventListener('click', () => {
             cartPopup.style.display = 'none';
         });
+
+        
 
         cartClearBtn.addEventListener('click', clearCart);
 

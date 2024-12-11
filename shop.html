@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Shop</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #111;
+            color: white;
+        }
+        .header {
+            text-align: center;
+            padding: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            background-color: #222;
+            color: #ff6347;
+        }
+        .search-bar {
+            display: flex;
+            justify-content: center;
+            padding: 10px;
+            background-color: #333;
+        }
+        .search-bar input {
+            padding: 10px;
+            width: 70%;
+            border: none;
+            border-radius: 20px;
+            margin-right: 10px;
+        }
+        .search-bar button {
+            padding: 10px 20px;
+            background-color: #ff6347;
+            border: none;
+            color: white;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            padding: 20px;
+        }
+        .product {
+            text-align: center;
+            background-color: #222;
+            border-radius: 10px;
+            padding: 10px;
+        }
+        .product img {
+            
+            max-height: 150px;
+            border-radius: 10px;
+        }
+        .product-title {
+            margin: 10px 0;
+            font-size: 18px;
+        }
+        .product-price {
+            color: #ff4500;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .bottom-menu {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #222;
+            padding: 10px 0;
+        }
+        .menu-icon {
+            color: white;
+            text-align: center;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .menu-icon i {
+            display: block;
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+      /*  .back-to-slider {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            background-color: #ff6347;
+            color: white;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 16px;
+        }
+        .back-to-slider:hover {
+            background-color: #ff4500;
+        }*/
+    </style>
+</head>
+<body>
+  
+    
+
+    <!-- Заголовок -->
+    <div class="header">Online Shop</div>
+
+    <!-- Пошук -->
+    <div class="search-bar">
+        <input type="text" placeholder="Пошук товарів...">
+        <button>🔍</button>
+    </div>
+
+    <!-- Сітка товарів -->
+    <div class="grid">
+        <!-- Товар 1 -->
+        <div class="product">
+            <img src="https://cdn-fmgkk.nitrocdn.com/BKmNwBRkqVmPYIICtRzqecoodfHwfIVE/assets/images/optimized/rev-4ad413a/correcttoes.com/wp-content/uploads/2024/05/AL0A82CB_000_R_HERO-300x300.jpg" alt="Товар 1">
+            <div class="product-title">Кросівки Nike</div>
+            <div class="product-price">₴2500</div>
+        </div>
+        <!-- Товар 2 -->
+        <div class="product">
+            <img src="https://carlsshoes.com/wp-content/uploads/2024/05/mw928bk3_nb_02_i-300x300.webp" alt="Товар 2">
+            <div class="product-title">Чорні черевики</div>
+            <div class="product-price">₴3500</div>
+        </div>
+        <!-- Товар 3 -->
+        <div class="product">
+            <img src="https://footlogics-shop.com.au/wp-content/uploads/2023/05/white-shoe-300x300.jpg" alt="Товар 3">
+            <div class="product-title">Білі кросівки</div>
+            <div class="product-price">₴2200</div>
+        </div>
+        <!-- Товар 4 -->
+        <div class="product">
+            <img src="https://sezon.ua/image/cache/catalog/image/easyfoto/17550/sandali-muzhskie-588882-chernye-1-300x300.jpg" alt="Товар 4">
+            <div class="product-title">Сандалії</div>
+            <div class="product-price">₴1500</div>
+        </div>
+    </div>
+
+    <!-- Нижнє меню -->
+    <div class="bottom-menu">
+        <div class="menu-icon" >
+            <a href="index.html">
+                <i>🏠</i>
+                <span class="menu-icon">Головна swipe</span>
+            </a>
+            
+        </div>
+        <div class="menu-icon">
+            <i>🔍</i>
+            Пошук
+        </div>
+        <div class="menu-icon">
+            <i>🛒</i>
+            Кошик
+        </div>
+        <div class="menu-icon">
+            <i>💖</i>
+            Обране
+        </div>
+    </div>
+</body>
+</html>
