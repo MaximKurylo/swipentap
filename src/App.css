@@ -1,0 +1,319 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.app {
+  background-color: #8B0000; /* Червоно-бордовий фон */
+  min-height: 100vh;
+  padding: 10px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  color: white;
+}
+
+.header h1 {
+  font-size: 24px;
+  margin: 0;
+}
+
+.menu-icon, .search-icon {
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.product-card {
+  background-color: white;
+  border-radius: 10px;
+  padding: 10px;
+  text-align: center;
+}
+
+.product-card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.product-card p {
+  margin: 5px 0;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.product-card button {
+  background-color: #8B0000;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.cart {
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 10px;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.cart-item img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.cart-item button {
+  background-color: #8B0000;
+  color: white;
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.navbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: white;
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 0;
+  border-top: 1px solid #ccc;
+}
+
+.navbar span {
+  font-size: 24px;
+  cursor: pointer;
+  position: relative;
+}
+
+.cart-count {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background-color: #8B0000;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 12px;
+}
+
+/* Додайте це до App.css */
+
+/* TikTok Page */
+.tiktok-page {
+  height: calc(100vh - 100px); /* Висота сторінки (мінус висота хедера та навбару) */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.tiktok-product-card {
+  background-color: white;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 400px;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+}
+
+.tiktok-product-card img {
+  width: 100%;
+  height: 70%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.tiktok-product-info {
+  text-align: center;
+}
+
+.tiktok-product-info p {
+  margin: 10px 0;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.tiktok-product-info button {
+  background-color: #8B0000;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Індикатор (точки) */
+.tiktok-indicator {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  background-color: #ccc;
+  border-radius: 50%;
+}
+
+.dot.active {
+  background-color: white;
+}
+
+/* Додайте це до App.css */
+
+/* Стилі для блоку підсумків */
+.cart-summary {
+  margin-top: 20px;
+  padding: 10px;
+  border-top: 1px solid #ccc;
+  text-align: center;
+}
+
+.cart-summary p {
+  margin: 5px 0;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+/* Стилі для кнопки "Очистити кошик" */
+.clear-cart-button {
+  background-color: #ff4444; /* Червоний колір для кнопки видалення */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.clear-cart-button:hover {
+  background-color: #cc0000; /* Темніший червоний при наведенні */
+}
+
+/* Додайте це до App.css */
+
+/* Затемнений фон для попапу */
+.cart-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Затемнення */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Щоб попап був поверх усього */
+}
+
+/* Стилі для самого попапу */
+.cart-popup {
+  background-color: white;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 400px;
+  max-height: 80vh; /* Обмеження висоти */
+  overflow-y: auto; /* Скрол, якщо вміст не вміщається */
+  padding: 20px;
+  position: relative;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Стилі для елементів кошика (залишаються без змін) */
+.cart-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.cart-item img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.cart-item button {
+  background-color: #8B0000;
+  color: white;
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Стилі для підсумків (залишаються без змін) */
+.cart-summary {
+  margin-top: 20px;
+  padding: 10px;
+  border-top: 1px solid #ccc;
+  text-align: center;
+}
+
+.cart-summary p {
+  margin: 5px 0;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.clear-cart-button {
+  background-color: #ff4444;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.clear-cart-button:hover {
+  background-color: #cc0000;
+}
+
+/* Стилі для кнопки "Close" */
+.cart-popup button:last-child {
+  background-color: #8B0000;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+  
+}
