@@ -1,29 +1,41 @@
-import React, { useState } from 'react';
-import { useSwipeable } from 'react-swipeable';
+import React, { useEffect, useRef, useState } from 'react';
 import TikTokProductCard from '../components/TikTokProductCard';
 
 const TikTokPage = ({ products, addToCart }) => {
+  const containerRef = useRef(null);
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Обробка свайпів
-  const handlers = useSwipeable({
-    onSwipedUp: () => {
-      if (currentIndex < products.length - 1) {
-        setCurrentIndex(currentIndex + 1);
+  // Оновлення індексу при скролі
+  useEffect(() => {
+    const handleScroll = () => {
+      const container = containerRef.current;
+      if (container) {
+        const scrollPosition = container.scrollTop;
+        const itemHeight = container.clientHeight;
+        const newIndex = Math.round(scrollPosition / itemHeight);
+        setCurrentIndex(newIndex);
       }
-    },
-    onSwipedDown: () => {
-      if (currentIndex > 0) {
-        setCurrentIndex(currentIndex - 1);
+    };
+
+    const container = containerRef.current;
+    if (container) {
+      container.addEventListener('scroll', handleScroll);
+    }
+
+    return () => {
+      if (container) {
+        container.removeEventListener('scroll', handleScroll);
       }
-    },
-    trackMouse: true, // Для тестування на десктопі
-  });
+    };
+  }, []);
 
   return (
-    <div className="tiktok-page" {...handlers}>
-      <TikTokProductCard product={products[currentIndex]} addToCart={addToCart} />
-      {/* Індикатор, який показує, на якому товарі ми знаходимося */}
+    <div className="tiktok-page" ref={containerRef}>
+      {products.map((product, index) => (
+        <div key={product.id} className="tiktok-product-wrapper">
+          <TikTokProductCard product={product} addToCart={addToCart} />
+        </div>
+      ))}
       <div className="tiktok-indicator">
         {products.map((_, index) => (
           <span

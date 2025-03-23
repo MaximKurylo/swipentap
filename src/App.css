@@ -108,29 +108,42 @@ body {
   font-size: 24px;
   cursor: pointer;
   position: relative;
+  display: inline-flex; /* Щоб іконка та цифра виглядали гармонійно */
+  align-items: center;
+  justify-content: center;
 }
 
 .cart-count {
   position: absolute;
-  top: -5px;
-  right: -5px;
-  background-color: #8B0000;
+  top: -8px; /* Зміщуємо вище, щоб цифра була в правому верхньому куті */
+  right: -8px; /* Зміщуємо праворуч */
+  background-color: #ff4444; /* Яскравий червоний колір для контрасту */
   color: white;
-  border-radius: 50%;
-  padding: 2px 6px;
-  font-size: 12px;
+  border-radius: 50%; /* Кругла форма */
+  font-size: 10px; /* Менший розмір шрифту */
+  font-weight: bold;
+  width: 16px; /* Фіксована ширина для ідеального кола */
+  height: 16px; /* Фіксована висота */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid white; /* Біла обводка для кращого контрасту */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); /* Легка тінь для об’єму */
 }
 
 /* Додайте це до App.css */
 
 /* TikTok Page */
 .tiktok-page {
-  height: calc(100vh - 100px); /* Висота сторінки (мінус висота хедера та навбару) */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
+  height: calc(100vh - 100px); /* Висота сторінки (мінус хедер і навбар) */
+  overflow-y: scroll; /* Дозволяємо вертикальний скрол */
+  scroll-snap-type: y mandatory; /* Прилипання при скролі */
+  -webkit-overflow-scrolling: touch; /* Плавний скрол на iOS */
+  scrollbar-width: none; /* Приховуємо скролбар у Firefox */
+}
+
+.tiktok-page::-webkit-scrollbar {
+  display: none; /* Приховуємо скролбар у Chrome/Safari */
 }
 
 .tiktok-product-card {
@@ -174,13 +187,21 @@ body {
 
 /* Індикатор (точки) */
 .tiktok-indicator {
-  position: absolute;
+  position: fixed;
   right: 20px;
   top: 50%;
   transform: translateY(-50%);
   display: flex;
   flex-direction: column;
   gap: 10px;
+}
+
+.tiktok-product-wrapper {
+  height: calc(100vh - 100px); /* Кожен товар займає весь екран */
+  scroll-snap-align: start; /* Прилипання до початку товару */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .dot {
@@ -316,4 +337,21 @@ body {
   cursor: pointer;
   margin-top: 20px;
   
+}
+
+
+/* Стилі для деталей товару в кошику */
+.cart-item-details {
+  flex: 1;
+  margin-left: 10px;
+}
+
+.cart-item-details p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.cart-item-details p:last-child {
+  font-weight: bold;
+  color: #8B0000; /* Червоний колір для кількості */
 }

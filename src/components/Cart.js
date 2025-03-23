@@ -1,9 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 const Cart = ({ cart, setCart, setShowCart }) => {
-  // Функція для видалення одного товару
+  // Функція для видалення товару або зменшення кількості
   const removeFromCart = (id) => {
-    setCart(cart.filter((item) => item.id !== id));
+    setCart((prevCart) => {
+      const item = prevCart.find((item) => item.product.id === id);
+      if (item.quantity > 1) {
+        // Якщо кількість більше 1, зменшуємо її
+        return prevCart.map((item) =>
+          item.product.id === id ? { ...item, quantity: item.quantity - 1 } : item
+        );
+      } else {
+        // Якщо кількість 1, видаляємо товар
+        return prevCart.filter((item) => item.product.id !== id);
+      }
+    });
   };
 
   // Функція для очищення кошика
@@ -13,16 +24,27 @@ const Cart = ({ cart, setCart, setShowCart }) => {
     }
   };
 
-  // Підрахунок загальної кількості товарів
-  const totalItems = cart.length;
+  // Підрахунок загальної кількості товарів (з урахуванням quantity)
+  const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
 
-  // Підрахунок загальної суми
+  // Підрахунок загальної суми (з урахуванням quantity)
   const totalPrice = cart.reduce((total, item) => {
-    const price = parseFloat(item.price.replace('€', '').replace(',', ''));
-    return total + price;
+    const price = parseFloat(item.product.price.replace('€', '').replace(',', ''));
+    return total + price * item.quantity;
   }, 0);
 
   const formattedTotalPrice = totalPrice.toLocaleString('en-US') + '€';
+
+  // Закриття на Esc
+  useEffect(() => {
+    const handleEsc = (event) => {
+      if (event.key === 'Escape') {
+        setShowCart(false);
+      }
+    };
+    window.addEventListener('keydown', handleEsc);
+    return () => window.removeEventListener('keydown', handleEsc);
+  }, [setShowCart]);
 
   // Закриття попапу при кліку поза вікном
   const handleOverlayClick = (e) => {
@@ -41,10 +63,13 @@ const Cart = ({ cart, setCart, setShowCart }) => {
           <>
             {/* Список товарів */}
             {cart.map((item) => (
-              <div key={item.id} className="cart-item">
-                <img src={item.image} alt="Product" />
-                <p>{item.price}</p>
-                <button onClick={() => removeFromCart(item.id)}>Remove</button>
+              <div key={item.product.id} className="cart-item">
+                <img src={item.product.image} alt="Product" />
+                <div className="cart-item-details">
+                  <p>{item.product.price}</p>
+                  <p>Quantity: {item.quantity}</p>
+                </div>
+                <button onClick={() => removeFromCart(item.product.id)}>Remove</button>
               </div>
             ))}
             {/* Загальна інформація */}

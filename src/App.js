@@ -21,7 +21,22 @@ const App = () => {
   ];
 
   const addToCart = (product) => {
-    setCart([...cart, product]);
+    setCart((prevCart) => {
+      // Шукаємо, чи є товар уже в кошику
+      const existingItem = prevCart.find((item) => item.product.id === product.id);
+
+      if (existingItem) {
+        // Якщо товар уже є, збільшуємо кількість
+        return prevCart.map((item) =>
+          item.product.id === product.id
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        );
+      } else {
+        // Якщо товару немає, додаємо його з кількістю 1
+        return [...prevCart, { product, quantity: 1 }];
+      }
+    });
   };
 
   return (
@@ -32,13 +47,12 @@ const App = () => {
           <Route path="/" element={<Home products={products} addToCart={addToCart} />} />
           <Route path="/tiktok" element={<TikTokPage products={products} addToCart={addToCart} />} />
         </Routes>
-        {/* Попап кошика */}
         {showCart && (
           <div className="cart-popup-overlay">
             <Cart cart={cart} setCart={setCart} setShowCart={setShowCart} />
           </div>
         )}
-        <Navbar setShowCart={setShowCart} cartCount={cart.length} />
+        <Navbar setShowCart={setShowCart} cartCount={cart.reduce((total, item) => total + item.quantity, 0)} />
       </div>
     </Router>
   );
