@@ -1,91 +1,71 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 const Cart = ({ cart, setCart, setShowCart }) => {
-  const increaseQuantity = (id) => {
-    setCart((prevCart) =>
-      prevCart.map((item) =>
-        item.product.id === id ? { ...item, quantity: item.quantity + 1 } : item
-      )
-    );
-  };
+  const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+  const totalPrice = cart
+    .reduce((total, item) => {
+      const price = parseFloat(item.product.price.replace(',', '.')); // Перетворюємо ціну в число
+      return total + price * item.quantity;
+    }, 0)
+    .toFixed(2);
 
-  const decreaseQuantity = (id) => {
+  const handleQuantityChange = (itemId, delta) => {
     setCart((prevCart) => {
-      const item = prevCart.find((item) => item.product.id === id);
-      if (item.quantity > 1) {
-        return prevCart.map((item) =>
-          item.product.id === id ? { ...item, quantity: item.quantity - 1 } : item
-        );
-      } else {
-        return prevCart.filter((item) => item.product.id !== id);
-      }
+      const updatedCart = prevCart
+        .map((item) =>
+          item.product.id === itemId
+            ? { ...item, quantity: item.quantity + delta } // Зменшуємо або збільшуємо кількість
+            : item
+        )
+        .filter((item) => item.quantity > 0); // Видаляємо товар, якщо кількість <= 0
+      return updatedCart;
     });
   };
 
   const clearCart = () => {
-    if (window.confirm('Are you sure you want to clear the cart?')) {
-      setCart([]);
-    }
-  };
-
-  const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
-
-  const totalPrice = cart.reduce((total, item) => {
-    const price = parseFloat(item.product.price.replace('€', '').replace(',', ''));
-    return total + price * item.quantity;
-  }, 0);
-
-  const formattedTotalPrice = totalPrice.toLocaleString('en-US') + '€';
-
-  useEffect(() => {
-    const handleEsc = (event) => {
-      if (event.key === 'Escape') {
-        setShowCart(false);
-      }
-    };
-    window.addEventListener('keydown', handleEsc);
-    return () => window.removeEventListener('keydown', handleEsc);
-  }, [setShowCart]);
-
-  const handleOverlayClick = (e) => {
-    if (e.target.classList.contains('cart-popup-overlay')) {
-      setShowCart(false);
-    }
+    setCart([]);
   };
 
   return (
-    <div className="cart-popup-overlay" onClick={handleOverlayClick}>
-      <div className="cart-popup">
+    <div className="cart-popup">
+      <div className="cart-header">
         <h2>Cart ({totalItems})</h2>
-        {cart.length === 0 ? (
-          <p>Your cart is empty</p>
-        ) : (
-          <>
+        <button onClick={() => setShowCart(false)} className="cart-close-button">
+          ✕
+        </button>
+      </div>
+      {cart.length === 0 ? (
+        <p className="cart-empty">Your cart is empty</p>
+      ) : (
+        <>
+          <div className="cart-items">
             {cart.map((item) => (
               <div key={item.product.id} className="cart-item">
-                <img src={item.product.image} alt={item.product.name} />
+                <img src={item.product.image} alt={item.product.name} className="cart-item-image" />
                 <div className="cart-item-details">
                   <h3>{item.product.name}</h3>
-                  <p>{item.product.price}</p>
-                  <div className="quantity-controls">
-                    <button onClick={() => decreaseQuantity(item.product.id)}>-</button>
+                  <p className="cart-item-price">{item.product.price}</p>
+                  <div className="cart-item-quantity">
+                    <button onClick={() => handleQuantityChange(item.product.id, -1)}>-</button>
                     <span>{item.quantity}</span>
-                    <button onClick={() => increaseQuantity(item.product.id)}>+</button>
+                    <button onClick={() => handleQuantityChange(item.product.id, 1)}>+</button>
                   </div>
                 </div>
               </div>
             ))}
-            <div className="cart-summary">
-              <p>Total Items: {totalItems}</p>
-              <p>Total Price: {formattedTotalPrice}</p>
-              <button className="clear-cart-button" onClick={clearCart}>
-                Clear Cart
-              </button>
+          </div>
+          <div className="cart-summary">
+            <div className="cart-summary-details">
+              <p>Total Items: <span>{totalItems}</span></p>
+              <p>Total Price: <span>{totalPrice}€</span></p>
             </div>
-          </>
-        )}
-        <button onClick={() => setShowCart(false)}>Close</button>
-      </div>
+            <div className="cart-actions">
+              <button onClick={clearCart} className="cart-clear-button">Clear Cart</button>
+              <button onClick={() => setShowCart(false)} className="cart-close-button">Close</button>
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 };
