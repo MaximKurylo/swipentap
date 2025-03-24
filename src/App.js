@@ -6,29 +6,31 @@ import Navbar from './components/Navbar';
 import Cart from './components/Cart';
 import Home from './pages/Home';
 import TikTokPage from './pages/TikTokPage';
+import SearchPopup from './components/SearchPopup';
 
 const App = () => {
   const [cart, setCart] = useState([]);
   const [showCart, setShowCart] = useState(false);
+  const [showSearch, setShowSearch] = useState(false);
 
   const products = [
     { 
       id: 1, 
-      name: 'Emerald Evening Dress',
+      name: 'Evening Dress',
       description: 'A stunning emerald green evening dress, perfect for formal events. Made from high-quality satin with a flowing silhouette.',
       image: 'https://images.pexels.com/photos/31270808/pexels-photo-31270808.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2', 
       price: '120,99€' 
     },
     { 
       id: 2, 
-      name: 'White Casual T-Shirt',
+      name: 'White T-Shirt',
       description: 'A comfortable white T-shirt made from 100% cotton. Ideal for everyday wear with a relaxed fit.',
       image: 'https://images.pexels.com/photos/2220316/pexels-photo-2220316.jpeg?auto=compress&cs=tinysrgb&w=1200', 
       price: '129€' 
     },
     { 
       id: 3, 
-      name: 'Red Button-Up Dress',
+      name: 'Red Dress',
       description: 'A chic red dress with button details, perfect for both casual and semi-formal occasions. Made from breathable fabric.',
       image: 'https://images.pexels.com/photos/1377451/pexels-photo-1377451.jpeg?auto=compress&cs=tinysrgb&w=1200', 
       price: '200€' 
@@ -49,7 +51,7 @@ const App = () => {
     },
     { 
       id: 6, 
-      name: 'Green Sleeveless Top',
+      name: 'Green Top',
       description: 'A stylish green sleeveless top, great for summer. Made from lightweight fabric with a flattering cut.',
       image: 'https://images.pexels.com/photos/17243615/pexels-photo-17243615.jpeg?auto=compress&cs=tinysrgb&w=1200', 
       price: '69€' 
@@ -74,7 +76,8 @@ const App = () => {
   return (
     <Router>
       <div className="app">
-        <Header />
+        
+      <Header setShowSearch={setShowSearch} />
         <Routes>
           <Route path="/" element={<Home products={products} addToCart={addToCart} />} />
           <Route path="/tiktok" element={<TikTokPage products={products} addToCart={addToCart} />} />
@@ -84,7 +87,14 @@ const App = () => {
             <Cart cart={cart} setCart={setCart} setShowCart={setShowCart} />
           </div>
         )}
-        <Navbar setShowCart={setShowCart} cartCount={cart.reduce((total, item) => total + item.quantity, 0)} />
+        {showSearch && (
+          <SearchPopup products={products} addToCart={addToCart} onClose={() => setShowSearch(false)} />
+        )}
+        <Navbar
+          setShowCart={setShowCart}
+          setShowSearch={setShowSearch} // Передаємо функцію для пошуку
+          cartCount={cart.reduce((total, item) => total + item.quantity, 0)}
+        />
       </div>
     </Router>
   );

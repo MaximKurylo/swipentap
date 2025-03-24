@@ -7,20 +7,52 @@ body {
   background-color: #8B0000; /* Червоно-бордовий фон */
   min-height: 100vh;
   padding: 10px;
+  padding-top: 60px; /* Відступ зверху, щоб врахувати висоту хедера */
+  padding-bottom: 60px; /* Відступ знизу, щоб врахувати висоту Navbar */
+  min-height: 100vh;
+  box-sizing: border-box;
 }
 
 .header {
+  background-color: #8B0000; /* Червоно-бордовий колір, як у вашому дизайні */
+  color: white;
+  padding: 15px;
+  text-align: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
-  color: white;
 }
 
 .header h1 {
   font-size: 24px;
   margin: 0;
 }
+
+.header-search {
+  cursor: pointer;
+  padding: 5px; /* Додаємо відступ, щоб область наведення була більшою */
+  display: inline-flex; /* Для кращого вирівнювання */
+  align-items: center;
+  justify-content: center;
+}
+
+.header-search-icon {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  
+}
+
+.icono {
+  cursor: pointer;
+  filter: brightness(0) invert(1); /* Робить іконку білою */
+}
+
 
 .menu-icon, .search-icon {
   font-size: 24px;
@@ -453,3 +485,70 @@ body {
   width: 100%;
   margin-top: 10px;
 }
+
+/* Попап пошуку */
+.search-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.search-popup {
+  background-color: rgba(255, 255, 255, 0.752);
+  border-radius: 10px;
+  width: 90%;
+  max-width: 500px;
+  max-height: 80vh;
+  overflow-y: auto;
+  padding: 20px;
+  position: relative;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.search-popup h2 {
+  margin: 0 0 15px;
+  font-size: 20px;
+  text-align: center;
+}
+
+.search-input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  box-sizing: border-box;
+}
+
+.search-results {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 50vh;
+  overflow-y: auto;
+}
+
+.search-results p {
+  text-align: center;
+  color: #666;
+}
+
+.search-popup button {
+  background-color: #8B0000;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 15px;
+}
+
