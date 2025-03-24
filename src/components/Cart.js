@@ -1,33 +1,35 @@
 import React, { useEffect } from 'react';
 
 const Cart = ({ cart, setCart, setShowCart }) => {
-  // Функція для видалення товару або зменшення кількості
-  const removeFromCart = (id) => {
+  const increaseQuantity = (id) => {
+    setCart((prevCart) =>
+      prevCart.map((item) =>
+        item.product.id === id ? { ...item, quantity: item.quantity + 1 } : item
+      )
+    );
+  };
+
+  const decreaseQuantity = (id) => {
     setCart((prevCart) => {
       const item = prevCart.find((item) => item.product.id === id);
       if (item.quantity > 1) {
-        // Якщо кількість більше 1, зменшуємо її
         return prevCart.map((item) =>
           item.product.id === id ? { ...item, quantity: item.quantity - 1 } : item
         );
       } else {
-        // Якщо кількість 1, видаляємо товар
         return prevCart.filter((item) => item.product.id !== id);
       }
     });
   };
 
-  // Функція для очищення кошика
   const clearCart = () => {
     if (window.confirm('Are you sure you want to clear the cart?')) {
       setCart([]);
     }
   };
 
-  // Підрахунок загальної кількості товарів (з урахуванням quantity)
   const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
 
-  // Підрахунок загальної суми (з урахуванням quantity)
   const totalPrice = cart.reduce((total, item) => {
     const price = parseFloat(item.product.price.replace('€', '').replace(',', ''));
     return total + price * item.quantity;
@@ -35,7 +37,6 @@ const Cart = ({ cart, setCart, setShowCart }) => {
 
   const formattedTotalPrice = totalPrice.toLocaleString('en-US') + '€';
 
-  // Закриття на Esc
   useEffect(() => {
     const handleEsc = (event) => {
       if (event.key === 'Escape') {
@@ -46,7 +47,6 @@ const Cart = ({ cart, setCart, setShowCart }) => {
     return () => window.removeEventListener('keydown', handleEsc);
   }, [setShowCart]);
 
-  // Закриття попапу при кліку поза вікном
   const handleOverlayClick = (e) => {
     if (e.target.classList.contains('cart-popup-overlay')) {
       setShowCart(false);
@@ -61,18 +61,20 @@ const Cart = ({ cart, setCart, setShowCart }) => {
           <p>Your cart is empty</p>
         ) : (
           <>
-            {/* Список товарів */}
             {cart.map((item) => (
               <div key={item.product.id} className="cart-item">
-                <img src={item.product.image} alt="Product" />
+                <img src={item.product.image} alt={item.product.name} />
                 <div className="cart-item-details">
+                  <h3>{item.product.name}</h3>
                   <p>{item.product.price}</p>
-                  <p>Quantity: {item.quantity}</p>
+                  <div className="quantity-controls">
+                    <button onClick={() => decreaseQuantity(item.product.id)}>-</button>
+                    <span>{item.quantity}</span>
+                    <button onClick={() => increaseQuantity(item.product.id)}>+</button>
+                  </div>
                 </div>
-                <button onClick={() => removeFromCart(item.product.id)}>Remove</button>
               </div>
             ))}
-            {/* Загальна інформація */}
             <div className="cart-summary">
               <p>Total Items: {totalItems}</p>
               <p>Total Price: {formattedTotalPrice}</p>

@@ -31,6 +31,7 @@ body {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 10px;
+  padding-bottom: 50px; /* Відступ знизу, щоб уникнути перекриття з Navbar */
 }
 
 .product-card {
@@ -38,6 +39,10 @@ body {
   border-radius: 10px;
   padding: 10px;
   text-align: center;
+}
+
+.product-card-content {
+  cursor: pointer; /* Показуємо, що можна клікнути */
 }
 
 .product-card img {
@@ -100,12 +105,12 @@ body {
   background-color: white;
   display: flex;
   justify-content: space-around;
-  padding: 10px 0;
+  padding: 5px 0;
   border-top: 1px solid #ccc;
 }
 
 .navbar span {
-  font-size: 24px;
+  font-size: 18px;
   cursor: pointer;
   position: relative;
   display: inline-flex; /* Щоб іконка та цифра виглядали гармонійно */
@@ -116,14 +121,14 @@ body {
 .cart-count {
   position: absolute;
   top: -8px; /* Зміщуємо вище, щоб цифра була в правому верхньому куті */
-  right: -8px; /* Зміщуємо праворуч */
-  background-color: #ff4444; /* Яскравий червоний колір для контрасту */
+  right: 5px; /* Зміщуємо праворуч */
+  background-color: #8B0000; /* Яскравий червоний колір для контрасту */
   color: white;
   border-radius: 50%; /* Кругла форма */
   font-size: 10px; /* Менший розмір шрифту */
   font-weight: bold;
-  width: 16px; /* Фіксована ширина для ідеального кола */
-  height: 16px; /* Фіксована висота */
+  width: 20px; /* Фіксована ширина для ідеального кола */
+  height: 20px; /* Фіксована висота */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -140,6 +145,7 @@ body {
   scroll-snap-type: y mandatory; /* Прилипання при скролі */
   -webkit-overflow-scrolling: touch; /* Плавний скрол на iOS */
   scrollbar-width: none; /* Приховуємо скролбар у Firefox */
+  padding-bottom: 50px; /* Відступ знизу, щоб уникнути перекриття з Navbar */
 }
 
 .tiktok-page::-webkit-scrollbar {
@@ -176,13 +182,34 @@ body {
   font-weight: bold;
 }
 
-.tiktok-product-info button {
+.tiktok-product-content {
+  cursor: pointer;
+}
+
+.tiktok-product-card h3 {
+  font-size: 18px;
+  margin: 10px 0;
+  color: #333;
+  text-align: center;
+}
+
+.tiktok-product-card button {
+  z-index: 1;
   background-color: #8B0000;
   color: white;
   border: none;
   padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
+  
+}
+
+.tiktok-product-card button:hover {
+  background-color: #a30000; /* Темніший відтінок при наведенні */
+}
+
+.tiktok-product-info button {
+  margin-top: 10px;
 }
 
 /* Індикатор (точки) */
@@ -264,7 +291,7 @@ body {
 
 /* Стилі для самого попапу */
 .cart-popup {
-  background-color: white;
+  background-color: #ffffffcc;
   border-radius: 10px;
   width: 90%;
   max-width: 400px;
@@ -297,6 +324,12 @@ body {
   padding: 5px;
   border-radius: 5px;
   cursor: pointer;
+}
+
+.cart-item-details h3 {
+  font-size: 14px;
+  margin: 5px 0;
+  color: #333;
 }
 
 /* Стилі для підсумків (залишаються без змін) */
@@ -332,7 +365,7 @@ body {
   background-color: #8B0000;
   color: white;
   border: none;
-  padding: 10px 20px;
+  
   border-radius: 5px;
   cursor: pointer;
   margin-top: 20px;
@@ -354,4 +387,69 @@ body {
 .cart-item-details p:last-child {
   font-weight: bold;
   color: #8B0000; /* Червоний колір для кількості */
+}
+
+/* Попап із деталями товару */
+.product-details-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.product-details-popup {
+  background-color: white;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 400px;
+  max-height: 80vh;
+  overflow-y: auto;
+  padding: 20px;
+  position: relative;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.product-details-popup h2 {
+  margin: 0 0 10px;
+  font-size: 20px;
+  text-align: center;
+}
+
+.product-details-popup img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.product-price {
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  margin: 10px 0;
+}
+
+.product-description {
+  font-size: 14px;
+  color: #333;
+  text-align: center;
+  margin: 10px 0;
+}
+
+.product-details-popup button {
+  background-color: #8B0000;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 10px;
 }
