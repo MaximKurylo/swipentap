@@ -7,6 +7,7 @@ import Cart from './components/Cart';
 import Home from './pages/Home';
 import TikTokPage from './pages/TikTokPage';
 import SearchPopup from './components/SearchPopup';
+import ProfilePage from './pages/ProfilePage';
 
 const App = () => {
   const [cart, setCart] = useState([]);
@@ -81,6 +82,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home products={products} addToCart={addToCart} />} />
           <Route path="/tiktok" element={<TikTokPage products={products} addToCart={addToCart} />} />
+          <Route path="/profile" element={<ProfilePage />} />
         </Routes>
         {showCart && (
           <div className="cart-popup-overlay">
