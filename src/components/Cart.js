@@ -14,16 +14,26 @@ const Cart = ({ cart, setCart, setShowCart }) => {
       const updatedCart = prevCart
         .map((item) =>
           item.product.id === itemId
-            ? { ...item, quantity: item.quantity + delta } // Зменшуємо або збільшуємо кількість
+            ? { ...item, quantity: item.quantity + delta }
             : item
         )
-        .filter((item) => item.quantity > 0); // Видаляємо товар, якщо кількість <= 0
+        .filter((item) => item.quantity > 0);
       return updatedCart;
     });
   };
 
   const clearCart = () => {
     setCart([]);
+  };
+
+  const handleCheckout = () => {
+    if (cart.length === 0) {
+      alert('Your cart is empty!');
+      return;
+    }
+    alert(`Thank you for your purchase! Total: ${totalPrice}€`);
+    setCart([]); // Очищаємо кошик після покупки
+    setShowCart(false); // Закриваємо кошик
   };
 
   return (
@@ -61,6 +71,7 @@ const Cart = ({ cart, setCart, setShowCart }) => {
             </div>
             <div className="cart-actions">
               <button onClick={clearCart} className="cart-clear-button">Clear Cart</button>
+              <button onClick={handleCheckout} className="cart-checkout-button">Checkout</button>
               <button onClick={() => setShowCart(false)} className="cart-close-button">Close</button>
             </div>
           </div>

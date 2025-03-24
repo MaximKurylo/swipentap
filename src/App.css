@@ -53,12 +53,6 @@ body {
   filter: brightness(0) invert(1); /* Робить іконку білою */
 }
 
-
-.menu-icon, .search-icon {
-  font-size: 24px;
-  cursor: pointer;
-}
-
 .product-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -95,36 +89,6 @@ body {
   color: white;
   border: none;
   padding: 5px 10px;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.cart {
-  background-color: white;
-  border-radius: 10px;
-  padding: 20px;
-  margin: 10px;
-}
-
-.cart-item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 10px;
-}
-
-.cart-item img {
-  width: 50px;
-  height: 50px;
-  object-fit: cover;
-  border-radius: 5px;
-}
-
-.cart-item button {
-  background-color: #8B0000;
-  color: white;
-  border: none;
-  padding: 5px;
   border-radius: 5px;
   cursor: pointer;
 }
@@ -411,21 +375,6 @@ body {
   font-weight: bold;
 }
 
-.cart-item-quantity {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.cart-item-quantity button {
-  background-color: #8B0000;
-  color: white;
-  border: none;
-  padding: 5px 10px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 14px;
-}
 
 .cart-item-quantity button:hover {
   background-color: #a30000;
@@ -436,11 +385,7 @@ body {
   color: #333;
 }
 
-.cart-summary {
-  margin-top: 20px;
-  padding-top: 15px;
-  border-top: 1px solid #eee;
-}
+
 
 .cart-summary-details {
   margin-bottom: 15px;
@@ -480,10 +425,15 @@ body {
   background-color: #a30000;
 }
 
-.cart-close-button {
-  background-color: #ccc;
-  color: #333;
+.cart-checkout-button {
+  background-color: #4CAF50; /* Зелений колір для кнопки "Checkout" */
+  color: white;
 }
+
+.cart-checkout-button:hover {
+  background-color: #45a049; /* Темніший зелений при наведенні */
+}
+
 
 .cart-close-button:hover {
   background-color: #b3b3b3;
@@ -495,22 +445,6 @@ body {
   align-items: center;
   justify-content: space-between;
   margin-bottom: 10px;
-}
-
-.cart-item img {
-  width: 50px;
-  height: 50px;
-  object-fit: cover;
-  border-radius: 5px;
-}
-
-.cart-item button {
-  background-color: #8B0000;
-  color: white;
-  border: none;
-  padding: 5px;
-  border-radius: 5px;
-  cursor: pointer;
 }
 
 .cart-item-details h3 {
@@ -533,15 +467,6 @@ body {
   font-weight: bold;
 }
 
-.clear-cart-button {
-  background-color: #ff4444;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-top: 10px;
-}
 
 .clear-cart-button:hover {
   background-color: #cc0000;
@@ -552,29 +477,11 @@ body {
   background-color: #8B0000;
   color: white;
   border: none;
-  
   border-radius: 5px;
   cursor: pointer;
-  
-  
-}
-
+  }
 
 /* Стилі для деталей товару в кошику */
-.cart-item-details {
-  flex: 1;
-  margin-left: 10px;
-}
-
-.cart-item-details p {
-  margin: 5px 0;
-  font-size: 14px;
-}
-
-.cart-item-details p:last-child {
-  font-weight: bold;
-  color: #8B0000; /* Червоний колір для кількості */
-}
 
 .cart-item-quantity {
   display: flex;
